@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 public class Crandrake extends Player {
 
+    ArrayList<Shape> availableShapes;
+    Move unflippedMove;
+    Move flippedMove;
+
     public Crandrake(int color, String name) {
         super(color, name);
     }
@@ -15,15 +19,25 @@ public class Crandrake extends Player {
     }
 
     public int grade(BlokusBoard board) {
+        if(availableShapes == null) {
+            availableShapes = board.getShapes();
+        }
         int boardGrade = 0;
         ArrayList<IntPoint> possibleMoves = board.moveLocations(getColor());
+        for(int p = 0; p < possibleMoves.size();p++)
+        {
+            for(int s = 0; s < availableShapes.size();s++)
+            {
+                for(int x = 0; x <= 3; x++)
+                {
+
+                }
+            }
+        }
         return 0;
     }
 
-    public int pieceSpots(BlokusBoard board, int index){
-        return 0;
-    }
     public Player freshCopy() {
-        return new BigMoverAI(getColor(), getName());
+        return new Crandrake(getColor(), getName());
     }
 }

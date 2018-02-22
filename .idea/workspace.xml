@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c6661b-5f77-4675-9a5e-c9321e005e71" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlokusBoard.java" afterPath="$PROJECT_DIR$/src/BlokusBoard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Crandrake.java" afterPath="$PROJECT_DIR$/src/Crandrake.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,18 +19,90 @@
       <file leaf-file-name="Crandrake.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="476">
+              <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding>
-                <element signature="e#197#198#0" expanded="true" />
-                <element signature="e#231#232#0" expanded="true" />
-                <element signature="e#277#278#0" expanded="true" />
-                <element signature="e#304#305#0" expanded="true" />
-                <element signature="e#534#535#0" expanded="true" />
-                <element signature="e#558#559#0" expanded="true" />
-                <element signature="e#590#591#0" expanded="true" />
-                <element signature="e#650#651#0" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlokusBoard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1108">
+              <caret line="475" column="4" lean-forward="false" selection-start-line="475" selection-start-column="4" selection-end-line="475" selection-end-column="4" />
+              <folding>
+                <element signature="docComment;method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#BlokusBoard#1;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeSkipped#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleSkipped#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="e#4314#4315#0" expanded="true" />
+                <element signature="e#4343#4344#0" expanded="true" />
+                <element signature="docComment;method#getBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#status#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#status#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#toString#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#toString#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#numRows#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#numCols#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#reset#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#reset#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#draw#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#draw#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#isValidMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#isInGrid#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getTurn#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#diagonalToColor#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Move.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1">
+              <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shape.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shape.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/RandomAI.java" />
         <option value="$PROJECT_DIR$/src/HookEm.java" />
         <option value="$PROJECT_DIR$/src/BigMoverAI.java" />
-        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
         <option value="$PROJECT_DIR$/src/MostMovesAI.java" />
         <option value="$PROJECT_DIR$/src/WideSpreadAI.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
@@ -104,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/DisplayScreen.java" />
         <option value="$PROJECT_DIR$/src/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/ServersListener.java" />
+        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
         <option value="$PROJECT_DIR$/src/Crandrake.java" />
       </list>
     </option>
@@ -129,9 +202,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,7 +221,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,8 +394,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35448578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -331,8 +404,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -375,7 +448,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -545,33 +618,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2652">
-          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MostMoves.java" />
     <entry file="file://$PROJECT_DIR$/src/HookEm.java" />
     <entry file="file://$PROJECT_DIR$/src/IntPoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Move.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4758">
-          <caret line="255" column="5" lean-forward="true" selection-start-line="255" selection-start-column="5" selection-end-line="255" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -636,19 +688,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1108">
+          <caret line="475" column="4" lean-forward="false" selection-start-line="475" selection-start-column="4" selection-end-line="475" selection-end-column="4" />
+          <folding>
+            <element signature="docComment;method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#BlokusBoard#1;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeSkipped#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleSkipped#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="e#4314#4315#0" expanded="true" />
+            <element signature="e#4343#4344#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#status#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#status#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#toString#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#toString#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#numRows#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#numCols#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#reset#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#reset#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#draw#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#draw#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#isValidMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#isInGrid#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getTurn#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#diagonalToColor#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="476">
+          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding>
-            <element signature="e#197#198#0" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#590#591#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
           </folding>
         </state>
       </provider>
