@@ -531,10 +531,8 @@ public class BlokusBoard
         else {
             if(color==ORANGE && turn==ORANGE) {
                 orangeSkips();
-                changeTurns();
             }else if(color==PURPLE && turn==PURPLE) {
                 purpleSkips();
-                changeTurns();
             }
             System.out.println("bad move 3");
             return false;

@@ -25,7 +25,7 @@ public class AndrewAI extends Player
             {
                 if(!used[x])
                 {
-
+                    System.out.print(possibleMoves(board, x, p));
                 }
             }
         }
@@ -33,9 +33,37 @@ public class AndrewAI extends Player
         return move;
     }
 
-    public ArrayList<Move> possibleMoves()
+    public ArrayList<Move> possibleMoves(BlokusBoard board, int pieceNumber, IntPoint position)
     {
-        return null;
+        ArrayList<Move> moves = new ArrayList<Move>();
+
+        boolean[] used = (getColor()==BlokusBoard.ORANGE)?board.getOrangeUsedShapes():board.getPurpleUsedShapes();
+        for(int x = 0;x<used.length;x++)
+        {
+            if(pieceNumber == x)
+            {
+                Shape shape = board.getShapes().get(x);
+                int pieceWidth = shape.original()[0].length;
+                int pieceHeight = shape.original().length;
+
+                for(int flip = 0;flip<2;flip++)
+                {
+                    for(int rotation = 0;rotation < 4;rotation++)
+                    {
+                        for(int r = 0;r<pieceHeight;r++)
+                        {
+                            for(int c = 0;c<pieceWidth;c++)
+                            {
+                                Move temp =  new Move(pieceNumber, flip%2==0?false:true, rotation, new IntPoint(position.getX()+c, position.getY()+r));
+                                if(board.isValidMove(temp, getColor()))
+                                    moves.add(temp);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return moves;
     }
 
 
