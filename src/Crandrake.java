@@ -7,8 +7,10 @@ import java.util.Scanner;
 public class Crandrake extends Player {
 
     ArrayList<Shape> availableShapes;
-    Move unflippedMove;
-    Move flippedMove;
+    private Move unflippedMove;
+    private Move flippedMove;
+	private int previousOtherMoves;
+	private int laterOtherMoves;
 
     public Crandrake(int color, String name) {
         super(color, name);
@@ -30,13 +32,28 @@ public class Crandrake extends Player {
             {
                 for(int x = 0; x <= 3; x++)
                 {
-
+                    unflippedMove = new Move(s, false, x, possibleMoves.get(p));
+                    if(board.isValidMove(unflippedMove))
+                    {
+                        if(getColor() == board.ORANGE)
+						{
+							previousOtherMoves = board.getPurpleMoveLocations().size();
+							makeMove(unflippedMove, getColor());
+							laterOtherMoves = board.getPurpleMoveLocations().size();
+						}
+                    }
+                    flippedMove = new Move(s, true, x, possibleMoves.get(p));
+                    
                 }
             }
         }
         return 0;
     }
 
+    public int gradeMove(Move move)
+    {
+        
+    }
     public Player freshCopy() {
         return new Crandrake(getColor(), getName());
     }
