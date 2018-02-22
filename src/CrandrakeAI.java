@@ -5,7 +5,7 @@ public class CrandrakeAI extends Player{
     }
 
     public Move getMove(BlokusBoard initial){
-
+        return null;
     }
 
     /**
@@ -15,7 +15,7 @@ public class CrandrakeAI extends Player{
      * @return The top however many moves will be 
      */
     public Move[] getMoves(BlokusBoard board, int top){
-
+        return null;
     }
 
     public CrandrakeAI freshCopy(){

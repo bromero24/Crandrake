@@ -14,11 +14,11 @@ public class ClientMain
     public static final int port = 8621;
 
     // stores the time to sleep between moves
-    public static int moveSleepTime 		= 0;
+    public static int moveSleepTime 		= 100;
     // stores how long to wait after a round finishes
-    public static int endSleepTime 			= 0;
+    public static int endSleepTime 			= 1000;
     // stores how long to wait after showing who will be playing who
-    public static int matchInfoSleepTime 	= 0;
+    public static int matchInfoSleepTime 	= 1000;
     // list of all the scores
     public static PlayerScores scores=null;
 
@@ -33,8 +33,8 @@ public class ClientMain
         int mode = 0;
 
         // Change this to your AI!!!
-        Player myAIasOrange = new BigMoverAI(BlokusBoard.ORANGE, "Big Boi AI");
-        Player myAIasPurple = new BigMoverAI(BlokusBoard.PURPLE, "Big Boi AI");
+        Player myAIasOrange = new AndrewAI(BlokusBoard.ORANGE, "Andrew's AI");
+        Player myAIasPurple = new BigMoverAI(BlokusBoard.PURPLE, "Big Mover AI");
 
         String myAI_Name = myAIasOrange.getName();
         String opponentName = "";

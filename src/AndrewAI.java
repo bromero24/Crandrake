@@ -25,7 +25,7 @@ public class AndrewAI extends Player
             {
                 if(!used[x])
                 {
-                    System.out.print(possibleMoves(board, x, p));
+                    System.out.println(possibleMoves(board, x, p));
                 }
             }
         }
@@ -50,13 +50,17 @@ public class AndrewAI extends Player
                 {
                     for(int rotation = 0;rotation < 4;rotation++)
                     {
-                        for(int r = 0;r<pieceHeight;r++)
+                        for(int r = -pieceHeight + 1; r < pieceHeight;  r++)
                         {
-                            for(int c = 0;c<pieceWidth;c++)
+                            for(int c = -pieceWidth + 1; c < pieceWidth;  c++)
                             {
+                                System.out.println(r+"\t"+c);
                                 Move temp =  new Move(pieceNumber, flip%2==0?false:true, rotation, new IntPoint(position.getX()+c, position.getY()+r));
                                 if(board.isValidMove(temp, getColor()))
+                                {
+                                    System.out.println("ADDED");
                                     moves.add(temp);
+                                }
                             }
                         }
                     }
