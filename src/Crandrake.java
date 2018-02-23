@@ -6,6 +6,9 @@ public class Crandrake extends Player {
     public final static int MAX_DEPTH = 4;
     public final static int STARTING_BRANCHES = 12;
     public final static int BRANCH_DECAY = 2;
+    ArrayList<Shape> availableShapes;
+    Move unflippedMove;
+    Move flippedMove;
 
     public Crandrake(int color, String name) {
         super(color, name);
@@ -38,11 +41,20 @@ public class Crandrake extends Player {
     }
 
     public int grade(BlokusBoard board) {
+        if (availableShapes == null) {
+            availableShapes = board.getShapes();
+        }
         int boardGrade = 0;
         ArrayList<IntPoint> possibleMoves = board.moveLocations(getColor());
+        for (int p = 0; p < possibleMoves.size(); p++) {
+            for (int s = 0; s < availableShapes.size(); s++) {
+                for (int x = 0; x <= 3; x++) {
+
+                }
+            }
+        }
         return 0;
     }
-
     /**
      *
      * @param count Amount of moves that should be returned that are advantageous to grade.
@@ -55,7 +67,8 @@ public class Crandrake extends Player {
     public int pieceSpots(BlokusBoard board, int index){
         return 0;
     }
+
     public Player freshCopy() {
-        return new BigMoverAI(getColor(), getName());
+        return new Crandrake(getColor(), getName());
     }
 }

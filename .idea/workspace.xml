@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="68c6661b-5f77-4675-9a5e-c9321e005e71" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlokusBoard.java" afterPath="$PROJECT_DIR$/src/BlokusBoard.java" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Crandrake.java" afterPath="$PROJECT_DIR$/src/Crandrake.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,22 +22,87 @@
       <file leaf-file-name="Crandrake.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="510">
               <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="e#1355#1356#0" expanded="true" />
                 <element signature="e#1382#1383#0" expanded="true" />
+=======
+            <state relative-caret-position="476">
+              <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+              <folding>
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+                <element signature="e#991#992#0" expanded="true" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Shape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Shape.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2686">
               <caret line="165" column="41" lean-forward="false" selection-start-line="165" selection-start-column="41" selection-end-line="165" selection-end-column="41" />
               <folding />
+=======
+      <file leaf-file-name="BlokusBoard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1108">
+              <caret line="475" column="4" lean-forward="false" selection-start-line="475" selection-start-column="4" selection-end-line="475" selection-end-column="4" />
+              <folding>
+                <element signature="docComment;method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#BlokusBoard#1;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeSkipped#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleSkipped#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="e#4314#4315#0" expanded="true" />
+                <element signature="e#4343#4344#0" expanded="true" />
+                <element signature="docComment;method#getBoard#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#status#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#status#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#toString#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#toString#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#numRows#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#numCols#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#reset#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#reset#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getOrangeUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getPurpleUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#draw#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#draw#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#isValidMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#isInGrid#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#getTurn#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#diagonalToColor#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="docComment;method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+                <element signature="method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+              </folding>
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
             </state>
           </provider>
         </entry>
@@ -41,8 +110,23 @@
       <file leaf-file-name="Move.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Move.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="221">
               <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+=======
+            <state relative-caret-position="-1">
+              <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shape.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Shape.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
               <folding />
             </state>
           </provider>
@@ -111,7 +195,6 @@
         <option value="$PROJECT_DIR$/src/RandomAI.java" />
         <option value="$PROJECT_DIR$/src/HookEm.java" />
         <option value="$PROJECT_DIR$/src/BigMoverAI.java" />
-        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
         <option value="$PROJECT_DIR$/src/MostMovesAI.java" />
         <option value="$PROJECT_DIR$/src/WideSpreadAI.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
@@ -119,6 +202,7 @@
         <option value="$PROJECT_DIR$/src/DisplayScreen.java" />
         <option value="$PROJECT_DIR$/src/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/ServersListener.java" />
+        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
         <option value="$PROJECT_DIR$/src/Crandrake.java" />
       </list>
     </option>
@@ -145,6 +229,11 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,9 +250,13 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scratches" />
+=======
+      <pane id="AndroidView" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,7 +482,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -568,6 +661,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4758">
@@ -575,6 +669,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
     <entry file="file://$PROJECT_DIR$/src/WideSpreadAI.java" />
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -636,29 +732,106 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Shape.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2686">
           <caret line="165" column="41" lean-forward="false" selection-start-line="165" selection-start-column="41" selection-end-line="165" selection-end-column="41" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1108">
+          <caret line="475" column="4" lean-forward="false" selection-start-line="475" selection-start-column="4" selection-end-line="475" selection-end-column="4" />
+          <folding>
+            <element signature="docComment;method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#BlokusBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#BlokusBoard#1;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeMoveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeSkipped#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleSkipped#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="e#4314#4315#0" expanded="true" />
+            <element signature="e#4343#4344#0" expanded="true" />
+            <element signature="docComment;method#getBoard#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#status#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#status#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#toString#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#toString#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#numRows#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#numCols#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#reset#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#reset#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getOrangeUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getPurpleUsedShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#draw#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#draw#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#isValidMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#changeTurns#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#makeMove#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#undoMovePiece#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#isInGrid#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#getTurn#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#loadShapes#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#moveLocations#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#diagonalToColor#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#sharePoint#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#orangeSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="docComment;method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+            <element signature="method#purpleSkips#0;class#BlokusBoard#0" expanded="false" />
+          </folding>
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Move.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="221">
           <caret line="13" column="8" lean-forward="false" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+=======
+        <state relative-caret-position="-1">
+          <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Shape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="510">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="e#1355#1356#0" expanded="true" />
             <element signature="e#1382#1383#0" expanded="true" />
+=======
+        <state relative-caret-position="476">
+          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <folding>
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+>>>>>>> a6bd197645eb3623583e6bd6a1eefe0054db15e0
           </folding>
         </state>
       </provider>
