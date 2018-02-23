@@ -55,7 +55,12 @@ public class BlokusBoard
 
     // orange move locations
     ArrayList<IntPoint> orangeMoveLocations = new ArrayList<>();
-
+    
+    // orange last successful move
+    Move orangeLastMove = null;
+    // purple last successful move
+	Move purpleLastMove = null;
+	
     /**
      * Creates the initial game board
      */
@@ -71,12 +76,14 @@ public class BlokusBoard
         reset();
     }
 
-     /* *
-     * Creates the board to be a copy of the received board.
-     * Used to edit a board without changing the true game board.
-     * Note: Players only receive copies of the true game board.
-     * @param b - Board to be cloned
-     */
+
+
+    /* *
+         * Creates the board to be a copy of the received board.
+         * Used to edit a board without changing the true game board.
+         * Note: Players only receive copies of the true game board.
+         * @param b - Board to be cloned
+         */
     public BlokusBoard(BlokusBoard b)
     {
         if(shapes==null)
@@ -106,7 +113,24 @@ public class BlokusBoard
         for(IntPoint p: b.getOrangeMoveLocations())
             orangeMoveLocations.add(p);
 
+		orangeLastMove = b.getOrangeLastMove();
+        purpleLastMove = b.getPurpleLastMove();
+    }
 
+    /**
+     * Returns the last successful move orange made
+     * @return last good move orange made
+     */
+    public Move getOrangeLastMove() {
+        return orangeLastMove;
+    }
+
+    /**
+     * Returns the last successful move purple made
+     * @return last good move purple made
+     */
+    public Move getPurpleLastMove() {
+        return purpleLastMove;
     }
 
     /**
@@ -171,25 +195,40 @@ public class BlokusBoard
             return PLAYING;
         else
         {
-            int orangeCount = 101;
-            int purpleCount = 101;
+            int orangeCount = 0;
+            int purpleCount = 0;
 
             for(int row=0; row < numRows(); row++)
                 for(int col=0; col < numCols(); col++)
                 {
                     if(board[row][col] == ORANGE)
-                        orangeCount--;
+                        orangeCount++;
                     if(board[row][col] == PURPLE)
-                        purpleCount--;
+                        purpleCount++;
 
                 }
+
+            if(orangeCount==89)
+            {
+                orangeCount +=15;
+                if(orangeLastMove!=null && getShapes().get(orangeLastMove.getPieceNumber()).getSquareCount()==1)
+                    orangeCount +=20;
+            }
+            if(purpleCount==89)
+            {
+                purpleCount +=15;
+                if(purpleLastMove!=null && getShapes().get(purpleLastMove.getPieceNumber()).getSquareCount()==1)
+                    purpleCount +=20;
+            }
+
             if(purpleCount==orangeCount)
                 status = TIE;
-            else if(orangeCount<purpleCount)
+            else if(orangeCount>purpleCount)
                 status = ORANGE_WINS;
             else
                 status = PURPLE_WINS;
-
+            System.out.println("The orange score for this game was "+orangeCount);
+            System.out.println("The purple score for this game was "+purpleCount);
             return status;
         }
     }
@@ -253,6 +292,8 @@ public class BlokusBoard
 
         orangeMoveLocations.add(new IntPoint(4,4));
         purpleMoveLocations.add(new IntPoint(9,9));
+
+        orangeLastMove = purpleLastMove = null;
     }
 
     /**
@@ -429,14 +470,14 @@ public class BlokusBoard
                     }
 
             if(!sharePoint(coloredSpots,moveLocations(color))) {
-
+                //System.out.println("\tThe move did not fall onto a valid move location");
                 return false;
             }
             else
             {
                 for(IntPoint p: coloredSpots)
                     if(!isInGrid(p.getX(),p.getY()) || board[p.getY()][p.getX()]!=EMPTY || !notOrthogonalToSelf(p.getX(),p.getY(),color)) {
-
+                        //System.out.println("Some of the shape fell off the board, tried to move onto a used location or was orthogonal to its own color");
                         return false;
                     }
                 return true;
@@ -444,7 +485,7 @@ public class BlokusBoard
         }
         else
         {
-
+            //System.out.println("The turn and moving color did not match. It is " +getTurn()+ "'s turn and "+color +" tried to move.");
             return false;
         }
     }
@@ -493,10 +534,8 @@ public class BlokusBoard
                     }
 
             ((color==ORANGE)?orangeUsedShapes:purpleUsedShapes)[move.getPieceNumber()]=true;
-            if(color==ORANGE) {
-                for(IntPoint p: coloredSpots)
-                    orangeMoveLocations.remove(p);
-
+            if(color==ORANGE)
+            {
                 int endR = topR+1+shape.length;
                 int endC = leftC+1+shape[0].length;
                 int startC = leftC-1;
@@ -506,6 +545,7 @@ public class BlokusBoard
                         if(isInGrid(c,r) && board[r][c]==EMPTY && !orangeMoveLocations.contains(p) && diagonalToColor(c,r,color) && notOrthogonalToSelf(c,r,color))
                             orangeMoveLocations.add(p);
                     }
+                orangeLastMove=move;
                 orangeSkipped = false;
             }
             else if(color==PURPLE)
@@ -522,7 +562,7 @@ public class BlokusBoard
                         if(isInGrid(c,r) &&board[r][c]==EMPTY && !purpleMoveLocations.contains(p) && diagonalToColor(c,r,color) && notOrthogonalToSelf(c,r,color))
                             purpleMoveLocations.add(p);
                     }
-
+                purpleLastMove=move;
                 orangeSkipped = false;
             }
             changeTurns();
@@ -531,10 +571,22 @@ public class BlokusBoard
         else {
             if(color==ORANGE && turn==ORANGE) {
                 orangeSkips();
+                //changeTurns();
             }else if(color==PURPLE && turn==PURPLE) {
                 purpleSkips();
+                //changeTurns();
             }
-            System.out.println("bad move 3");
+            try
+            {
+                Thread.sleep(100000);
+
+            }
+            catch(Exception e) {
+                System.out.println("The player is "+ color);
+                System.out.println("The turn is "+ turn);
+                System.out.println("The move is "+ move);
+                System.out.println("Not a valid Move");
+            }
             return false;
         }
     }
@@ -574,20 +626,20 @@ public class BlokusBoard
 
                     if(isInGrid(c,r) && board[r][c]==EMPTY) {
                         IntPoint p = new IntPoint(c, r);
-                        if (purpleMoveLocations.contains(p) && !diagonalToColor(c, r, PURPLE))
+                        if (purpleMoveLocations.contains(p) && (!diagonalToColor(c, r, PURPLE)|| !notOrthogonalToSelf(c,r,PURPLE)))
                             purpleMoveLocations.remove(p);
                         else if (!purpleMoveLocations.contains(p) && diagonalToColor(c, r, PURPLE) && notOrthogonalToSelf(c,r,PURPLE))
                             purpleMoveLocations.add(p);
 
-                        if (orangeMoveLocations.contains(p) && !diagonalToColor(c, r, ORANGE))
+                        if (orangeMoveLocations.contains(p) && (!diagonalToColor(c, r, ORANGE)|| !notOrthogonalToSelf(c,r,ORANGE)))
                             orangeMoveLocations.remove(p);
                         else if (!orangeMoveLocations.contains(p) && diagonalToColor(c, r, ORANGE) && notOrthogonalToSelf(c,r,ORANGE))
                             orangeMoveLocations.add(p);
                     }
                 }
-            if(board[4][4]==EMPTY)
+            if(board[4][4]==EMPTY &&!orangeMoveLocations.contains(new IntPoint(4,4)) )
                 orangeMoveLocations.add(new IntPoint(4,4));
-            if(board[9][9]==EMPTY)
+            if(board[9][9]==EMPTY && !purpleMoveLocations.contains(new IntPoint(9,9)))
                 purpleMoveLocations.add(new IntPoint(9,9));
         }
         catch(Exception e)
