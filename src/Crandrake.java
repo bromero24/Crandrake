@@ -7,8 +7,10 @@ public class Crandrake extends Player {
     public final static int STARTING_BRANCHES = 12;
     public final static int BRANCH_DECAY = 2;
     ArrayList<Shape> availableShapes;
-    Move unflippedMove;
-    Move flippedMove;
+    private Move unflippedMove;
+    private Move flippedMove;
+	private int previousOtherMoves;
+	private int laterOtherMoves;
 
     public Crandrake(int color, String name) {
         super(color, name);
@@ -46,10 +48,23 @@ public class Crandrake extends Player {
         }
         int boardGrade = 0;
         ArrayList<IntPoint> possibleMoves = board.moveLocations(getColor());
-        for (int p = 0; p < possibleMoves.size(); p++) {
-            for (int s = 0; s < availableShapes.size(); s++) {
-                for (int x = 0; x <= 3; x++) {
-
+        for(int p = 0; p < possibleMoves.size();p++)
+        {
+            for(int s = 0; s < availableShapes.size();s++)
+            {
+                for(int x = 0; x <= 3; x++)
+                {
+                    unflippedMove = new Move(s, false, x, possibleMoves.get(p));
+                    if(board.isValidMove(unflippedMove))
+                    {
+                        if(getColor() == board.ORANGE)
+						{
+							previousOtherMoves = board.getPurpleMoveLocations().size();
+							makeMove(unflippedMove, getColor());
+							laterOtherMoves = board.getPurpleMoveLocations().size();
+						}
+                    }
+                    flippedMove = new Move(s, true, x, possibleMoves.get(p));
                 }
             }
         }
@@ -68,6 +83,10 @@ public class Crandrake extends Player {
         return 0;
     }
 
+    public int gradeMove(Move move)
+    {
+        
+    }
     public Player freshCopy() {
         return new Crandrake(getColor(), getName());
     }
