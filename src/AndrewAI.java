@@ -33,6 +33,29 @@ public class AndrewAI extends Player
         return move;
     }
 
+    public int gradeSquare(BlokusBoard board, int r, int c)
+    {
+        int value = 100;
+        if(board.getBoard()[r][c] == BlokusBoard.EMPTY)
+        {
+
+        }
+        else if(board.getBoard()[r][c] == getColor())
+        {
+
+        }
+        else if(board.getBoard()[r][c] != getColor())
+        {
+
+        }
+        return 0;
+    }
+
+    public int gradeBoard(BlokusBoard board)
+    {
+        return 0;
+    }
+
     public ArrayList<Move> possibleMoves(BlokusBoard board, int pieceNumber, IntPoint position)
     {
         ArrayList<Move> moves = new ArrayList<Move>();
