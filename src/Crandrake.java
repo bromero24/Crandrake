@@ -36,6 +36,7 @@ public class Crandrake extends Player {
                 //UNMOVE PIECE
                 board.undoMovePiece(moves.pop(), cColor);
                 rDepth = depth.pop();
+                //DOUBLE POP
                 continue;
             }
             rDepth = depth.pop();
@@ -57,6 +58,7 @@ public class Crandrake extends Player {
                 for(Move i : m){
                     moves.push(i);
                     depth.push(rDepth+1);
+                    //EVEN PUSHES
                 }
             }else{
                 //AT MAX DEPTH
@@ -72,9 +74,9 @@ public class Crandrake extends Player {
                         }
                         break;
                 }
-
+                moves.pop();
+                //DOUBLE POP
             }
-
         }while(depth.size()>0);
         return best;
     }
