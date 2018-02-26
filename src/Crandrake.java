@@ -14,7 +14,6 @@ public class Crandrake extends Player {
 
     ArrayList<Shape> availableShapes;
     private Move unflippedMove, flippedMove;
-	private int previousOtherMoves, laterOtherMoves;
 
     public Crandrake(int color, String name) {
         super(color, name);
@@ -90,7 +89,7 @@ public class Crandrake extends Player {
             availableShapes = board.getShapes();
         }
         int boardGrade = 0;
-        ArrayList<IntPoint> possibleMoves = board.moveLocations(color);
+        ArrayList<IntPoint> possibleMoves = board.moveLocations(getColor());
         for(int p = 0; p < possibleMoves.size();p++)
         {
             for(int s = 0; s < availableShapes.size();s++)
@@ -98,20 +97,19 @@ public class Crandrake extends Player {
                 for(int x = 0; x <= 3; x++)
                 {
                     unflippedMove = new Move(s, false, x, possibleMoves.get(p));
-                    if(board.isValidMove(unflippedMove))
+                    if(board.isValidMove(unflippedMove, color))
                     {
-                        if(color == board.ORANGE)
-						{
-							previousOtherMoves = board.getPurpleMoveLocations().size();
-							makeMove(unflippedMove, color);
-							laterOtherMoves = board.getPurpleMoveLocations().size();
-						}
+                        boardGrade += (availableShapes.get(s).getSquareCount()*(gradeMove(unflippedMove,board)+1));
                     }
                     flippedMove = new Move(s, true, x, possibleMoves.get(p));
+                    if(board.isValidMove(flippedMove, color))
+                    {
+                        boardGrade += (availableShapes.get(s).getSquareCount()*(gradeMove(flippedMove,board)+1));
+                    }
                 }
             }
         }
-        return 0;
+        return boardGrade;
     }
     /**
      *
@@ -122,13 +120,33 @@ public class Crandrake extends Player {
         return null;
     }
 
-    public int pieceSpots(BlokusBoard board, int index){
-        return 0;
-    }
 
-    public int gradeMove(Move move)
+    public int gradeMove(Move move, BlokusBoard board)
     {
-        return 0;
+        int previousOpponentMoves, laterOpponentMoves, movesLostByOpponent = 0, previousMoves, laterMoves, movesGained = 0;
+        if(getColor() == board.ORANGE)
+        {
+            previousMoves = board.getOrangeMoveLocations().size();
+            previousOpponentMoves = board.getPurpleMoveLocations().size();
+            board.makeMove(move, getColor());
+            laterMoves = board.getOrangeMoveLocations().size();
+            laterOpponentMoves = board.getPurpleMoveLocations().size();
+            movesGained = laterMoves - previousMoves;
+            movesLostByOpponent = laterOpponentMoves - previousOpponentMoves;
+            board.undoMovePiece(move,getColor());
+        }
+        else if(getColor() == board.PURPLE)
+        {
+            previousMoves = board.getPurpleMoveLocations().size();
+            previousOpponentMoves = board.getOrangeMoveLocations().size();
+            board.makeMove(move, getColor());
+            laterMoves = board.getPurpleMoveLocations().size();
+            laterOpponentMoves = board.getOrangeMoveLocations().size();
+            movesGained = laterMoves - previousMoves;
+            movesLostByOpponent = laterOpponentMoves - previousOpponentMoves;
+            board.undoMovePiece(move,getColor());
+        }
+        return movesGained + movesLostByOpponent;
     }
     public Player freshCopy() {
         return new Crandrake(getColor(), getName());
