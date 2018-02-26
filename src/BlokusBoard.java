@@ -456,7 +456,6 @@ public class BlokusBoard
         if(turn==color)
         {
             if(((color==ORANGE)?orangeUsedShapes:purpleUsedShapes)[move.getPieceNumber()]==true) {
-
                 return false;
             }
             int leftC = move.getPoint().getX();
@@ -534,13 +533,15 @@ public class BlokusBoard
                     }
 
             ((color==ORANGE)?orangeUsedShapes:purpleUsedShapes)[move.getPieceNumber()]=true;
+
             if(color==ORANGE)
             {
                 int endR = topR+1+shape.length;
                 int endC = leftC+1+shape[0].length;
                 int startC = leftC-1;
-                for(int r=topR-1; r<endR; r++)
-                    for(int c=startC; c<endC; c++) {
+                int startR = topR-1;
+                for(int r=startR; r<=endR; r++)
+                    for(int c=startC; c<=endC; c++) {
                         IntPoint p = new IntPoint(c,r);
                         if(isInGrid(c,r) && board[r][c]==EMPTY && !orangeMoveLocations.contains(p) && diagonalToColor(c,r,color) && notOrthogonalToSelf(c,r,color))
                             orangeMoveLocations.add(p);
@@ -550,14 +551,12 @@ public class BlokusBoard
             }
             else if(color==PURPLE)
             {
-                for(IntPoint p: coloredSpots)
-                    purpleMoveLocations.remove(p);
-
                 int endR = topR+1+shape.length;
                 int endC = leftC+1+shape[0].length;
                 int startC = leftC-1;
-                for(int r=topR-1; r<endR; r++)
-                    for(int c=startC; c<endC; c++) {
+                int startR = topR-1;
+                for(int r=startR; r<=endR; r++)
+                    for(int c=startC; c<=endC; c++) {
                         IntPoint p = new IntPoint(c,r);
                         if(isInGrid(c,r) &&board[r][c]==EMPTY && !purpleMoveLocations.contains(p) && diagonalToColor(c,r,color) && notOrthogonalToSelf(c,r,color))
                             purpleMoveLocations.add(p);
@@ -566,26 +565,40 @@ public class BlokusBoard
                 orangeSkipped = false;
             }
             changeTurns();
+            int endR = topR+1+shape.length;
+            int endC = leftC+1+shape[0].length;
+            int startC = leftC-1;
+            int startR = topR-1;
+            for(int r=startR; r<=endR; r++)
+                for(int c=startC; c<=endC; c++) {
+                    IntPoint p = new IntPoint(c,r);
+                    if(isInGrid(c,r) &&board[r][c]==EMPTY)
+                    {
+                        if(purpleMoveLocations.contains(p) && (!diagonalToColor(c,r,PURPLE) || !notOrthogonalToSelf(c,r,PURPLE)))
+                            purpleMoveLocations.remove(p);
+                        if(orangeMoveLocations.contains(p) && (!diagonalToColor(c,r,ORANGE) || !notOrthogonalToSelf(c,r,ORANGE)))
+                            orangeMoveLocations.remove(p);
+                    }
+                }
             return true;
         }
         else {
-            if(color==ORANGE && turn==ORANGE) {
+            if(turn==ORANGE) {
                 orangeSkips();
-                //changeTurns();
-            }else if(color==PURPLE && turn==PURPLE) {
+            }
+            else{
                 purpleSkips();
-                //changeTurns();
             }
             try
             {
-                Thread.sleep(100000);
-
-            }
-            catch(Exception e) {
                 System.out.println("The player is "+ color);
                 System.out.println("The turn is "+ turn);
                 System.out.println("The move is "+ move);
                 System.out.println("Not a valid Move");
+                Thread.sleep(10000);
+            }
+            catch(Exception e) {
+
             }
             return false;
         }
@@ -628,12 +641,12 @@ public class BlokusBoard
                         IntPoint p = new IntPoint(c, r);
                         if (purpleMoveLocations.contains(p) && (!diagonalToColor(c, r, PURPLE)|| !notOrthogonalToSelf(c,r,PURPLE)))
                             purpleMoveLocations.remove(p);
-                        else if (!purpleMoveLocations.contains(p) && diagonalToColor(c, r, PURPLE) && notOrthogonalToSelf(c,r,PURPLE))
+                        if (!purpleMoveLocations.contains(p) && diagonalToColor(c, r, PURPLE) && notOrthogonalToSelf(c,r,PURPLE))
                             purpleMoveLocations.add(p);
 
                         if (orangeMoveLocations.contains(p) && (!diagonalToColor(c, r, ORANGE)|| !notOrthogonalToSelf(c,r,ORANGE)))
                             orangeMoveLocations.remove(p);
-                        else if (!orangeMoveLocations.contains(p) && diagonalToColor(c, r, ORANGE) && notOrthogonalToSelf(c,r,ORANGE))
+                        if (!orangeMoveLocations.contains(p) && diagonalToColor(c, r, ORANGE) && notOrthogonalToSelf(c,r,ORANGE))
                             orangeMoveLocations.add(p);
                     }
                 }
@@ -725,32 +738,6 @@ public class BlokusBoard
             else
                 return purpleMoveLocations;
         }
-        /*if(color==ORANGE && board[4][4]==EMPTY) {
-            movePoints.add(new IntPoint(4,4));
-            return movePoints;
-        }
-        else if(color==PURPLE && board[9][9]==EMPTY)
-        {
-            movePoints.add(new IntPoint(9,9));
-            return movePoints;
-        }
-        else
-        else {
-            for (int r = 0; r < board.length; r++)
-                for (int c = 0; c < board[0].length; c++) {
-                    if (board[r][c] == EMPTY) {
-                        for (int cr = -1; cr <= 1; cr += 2)
-                            for (int cc = -1; cc <= 1; cc += 2) {
-                                if ((isInGrid(c + cc, r + cr) && board[r + cr][c + cc] == color) &&
-                                        notOrthogonalToSelf(c, r, color)) {
-                                    movePoints.add(new IntPoint(c, r));
-                                }
-                            }
-                    }
-                }
-
-            return movePoints;
-        }*/
     }
 
     /**

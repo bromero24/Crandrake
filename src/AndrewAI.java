@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AndrewAI extends Player
 {
@@ -17,7 +18,6 @@ public class AndrewAI extends Player
     {
         Move move = null;
         int maxScore = 0;
-        int pieceSize = 0;
 
         for (IntPoint p : board.moveLocations(getColor()))
         {
@@ -28,23 +28,66 @@ public class AndrewAI extends Player
                 if (!used[x])
                 {
                     ArrayList<Move> moves = possibleMoves(board, x, p);
+
+k
+
                     for (Move m : moves)
                     {
+                        System.out.println("VALID?: "+board.isValidMove(m,getColor()));
                         board.makeMove(m, getColor());
+                        board.changeTurns();
                         int score = gradeBoard(board);
-                        if (score - maxScore > 500)
+                        if (score > maxScore)
                         {
                             move = m;
                             maxScore = score;
-                            pieceSize = board.getShapes().get(x).getSquareCount();
-                        }
-                        else if(score > maxScore)
-                        {
-
                         }
                         board.undoMovePiece(m, getColor());
                     }
                 }
+            }
+        }
+
+        if (move == null) //copied from random AI
+        {
+            ArrayList<IntPoint> avaiableMoves = board.moveLocations(getColor());
+            Collections.shuffle(avaiableMoves);
+            ArrayList<Integer> usableShapePositions = new ArrayList<>();
+            boolean[] used = (getColor()==BlokusBoard.ORANGE)?board.getOrangeUsedShapes():board.getPurpleUsedShapes();
+            for(int x=0; x<used.length; x++)
+                if(!used[x])
+                    usableShapePositions.add(x);
+            Collections.shuffle(usableShapePositions);
+            if(usableShapePositions.isEmpty() ||avaiableMoves.isEmpty())
+                return null;
+            else
+            {
+                for(IntPoint movLoc: avaiableMoves)
+                {
+                    for (Integer position : usableShapePositions)
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            boolean flip = i > 3;
+                            int rotation = i % 4;
+                            boolean[][] shape = board.getShapes().get(position).manipulatedShape(flip, rotation);
+                            for (int r = -shape.length + 1; r < shape.length; r++)
+                            {
+                                for (int c = -shape[0].length + 1; c < shape[0].length; c++)
+                                {
+                                    IntPoint topLeft = new IntPoint(movLoc.getX() + c, movLoc.getY() + r);
+                                    Move test = new Move(position, flip, rotation, topLeft);
+                                    if (board.isValidMove(test, getColor()))
+                                    {
+                                        System.out.println("MADE RANDOM MOVE");
+                                        return test;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return null;
             }
         }
 
@@ -61,39 +104,43 @@ public class AndrewAI extends Player
      */
     public int gradeSquare(BlokusBoard board, int r, int c)
     {
-        int value = 100;
+        int value = 0;
         if (board.getBoard()[r][c] == BlokusBoard.EMPTY)
         {
-            if (board.notOrthogonalToSelf(c, r, getColor()) && board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching both
+            if (!board.notOrthogonalToSelf(c, r, getColor()) && !board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching both
             {
-                //square has no value
-                value = 0;
-                return value;
+                value -= 10;
             }
-            else if (board.notOrthogonalToSelf(c, r, getColor())) // true if touching self TODO: Bigger leaks are worse for us
+            else if (!board.notOrthogonalToSelf(c, r, getColor())) // true if touching self TODO: Bigger leaks are worse for us
             {
-                //value becomes negative
-                value *= -1;
+                value -= 100;
                 if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
                 {
-                    //decreases the value. Multiplier is subject to change
-                    value *= 1.75;
+                    value -= 130;
                 }
             }
-            else if (board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching opponent TODO: Bigger leaks are better for us
+            else if (!board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching opponent TODO: Bigger leaks are better for us
             {
-                //increases the value. Multiplier is subject to change
-                value *= 1.25;
-
-                if (board.diagonalToColor(c, r, getColor())) // true if square is playable for self
+                value += 100;
+                if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
                 {
-                    //increases the value. Multiplier is subject to change
-                    value *= 2;
+                    value += 130;
                 }
             }
-            else if (board.diagonalToColor(c, r, getColor()) && board.diagonalToColor(c, r, getOtherColor())) // true if contested
+            else if(board.notOrthogonalToSelf(c, r, getColor()) && board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching neither
             {
-                //TODO: Figure out if this is good or bad
+                if (board.diagonalToColor(c, r, getOtherColor()) && board.diagonalToColor(c, r, getColor())) // true if square is playable for both
+                {
+                    value -= 50;
+                }
+                else if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
+                {
+                    value -= 130;
+                }
+                else if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
+                {
+                    value += 200;
+                }
             }
 //            TODO: Reserved
 //            if (/*reserved*/ true)
@@ -104,11 +151,21 @@ public class AndrewAI extends Player
         }
         else if (board.getBoard()[r][c] == getColor())
         {
-            value *= 1.2;
+            value += 100;
+
+            if(r >= 5 && r <= 10 && c >= 5 && c <= 10) //piece in center
+            {
+                value += 300;
+            }
         }
         else if (board.getBoard()[r][c] != getColor())
         {
-            value *= .8;
+            value -= 100;
+
+            if(r >= 5 && r <= 10 && c >= 5 && c <= 10) //piece in center
+            {
+                value -= 300;
+            }
         }
         return value;
     }
@@ -125,7 +182,7 @@ public class AndrewAI extends Player
                 grade += gradeSquare(board, r, c);
             }
         }
-        System.out.println(grade);
+        System.out.println("GRADE: "+grade);
         return grade;
     }
 
@@ -159,7 +216,8 @@ public class AndrewAI extends Player
                         {
                             for (int c = -pieceWidth + 1; c < pieceWidth; c++)
                             {
-                                System.out.println(r + "\t" + c);
+                                System.out.println("PIECE ROW AND COLUMN: "+r + "\t" + c);
+                                System.out.println("PICE NUMBER: "+pieceNumber);
                                 Move temp = new Move(pieceNumber, flip % 2 == 0 ? false : true, rotation, new IntPoint(position.getX() + c, position.getY() + r));
                                 if (board.isValidMove(temp, getColor()))
                                 {
@@ -172,6 +230,12 @@ public class AndrewAI extends Player
                 }
             }
         }
+
+        for(Move m:moves)
+        {
+            System.out.print(board.isValidMove(m,getColor())+" ");
+        }
+        System.out.println();
         return moves;
     }
 
