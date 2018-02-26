@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68c6661b-5f77-4675-9a5e-c9321e005e71" name="Default" comment="fixed accidentally using random AI">
+    <list default="true" id="68c6661b-5f77-4675-9a5e-c9321e005e71" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockus AI - Solution/BlokusBoard.class" afterPath="$PROJECT_DIR$/out/production/Blockus AI - Solution/BlokusBoard.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockus AI - Solution/ClientMain.class" afterPath="$PROJECT_DIR$/out/production/Blockus AI - Solution/ClientMain.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -23,10 +23,10 @@
         <entry file="file://$PROJECT_DIR$/src/AndrewAI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="31" column="1" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7063#7069#0" expanded="true" />
+                <element signature="e#7062#7068#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -377,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519414823845</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed accidentally using random AI">
+      <created>1519673918949</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1519673918949</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -744,10 +751,10 @@
     <entry file="file://$PROJECT_DIR$/src/AndrewAI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="31" column="1" lean-forward="false" selection-start-line="31" selection-start-column="1" selection-end-line="31" selection-end-column="1" />
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7063#7069#0" expanded="true" />
+            <element signature="e#7062#7068#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -29,7 +29,7 @@ public class AndrewAI extends Player
                 {
                     ArrayList<Move> moves = possibleMoves(board, x, p);
 
-k
+
 
                     for (Move m : moves)
                     {
