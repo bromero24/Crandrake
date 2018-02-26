@@ -23,7 +23,8 @@ public class Crandrake extends Player {
         //Look ahead
         Stack<Move> moves= new Stack<>();
         Stack<Integer> depth = new Stack<>();
-        depth.push(0);
+
+        Move[] b = getBestMoves(STARTING_BRANCHES, board, getColor());
 
         int bestGrade = Integer.MIN_VALUE;
         Move best = null, cMove = null;
@@ -54,7 +55,7 @@ public class Crandrake extends Player {
                     cMove = moves.peek();
                 }
                 board.makeMove(moves.peek(),cColor);
-                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board);
+                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, cColor);
                 for(Move i : m){
                     moves.push(i);
                     depth.push(rDepth+1);
@@ -91,7 +92,7 @@ public class Crandrake extends Player {
             availableShapes = board.getShapes();
         }
         int boardGrade = 0;
-        ArrayList<IntPoint> possibleMoves = board.moveLocations(getColor());
+        ArrayList<IntPoint> possibleMoves = board.moveLocations(color);
         for(int p = 0; p < possibleMoves.size();p++)
         {
             for(int s = 0; s < availableShapes.size();s++)
@@ -118,8 +119,75 @@ public class Crandrake extends Player {
      * @param count Amount of moves that should be returned that are advantageous to grade.
      * @return Move array of size count of best moves according to grade.
      */
-    private Move[] getBestMoves(int count, BlokusBoard board){
-        return null;
+    private Move[] getBestMoves(int count, BlokusBoard board, int color){
+        if (availableShapes == null) {
+            availableShapes = board.getShapes();
+        }
+        ArrayList<Move> best = new ArrayList<>();
+        ArrayList<Integer> bestGrades = new ArrayList<>();
+        ArrayList<IntPoint> possibleMoves = board.moveLocations(color);
+
+        bestGrades.add(Integer.MAX_VALUE);
+        best.add(null);
+        int tempGrade;
+        for(int p = 0; p < possibleMoves.size();p++)
+        {
+            for(int s = 0; s < availableShapes.size();s++)
+            {
+                for(int x = 0; x <= 3; x++)
+                {
+                    unflippedMove = new Move(s, false, x, possibleMoves.get(p));
+                    if(board.isValidMove(unflippedMove, color))
+                    {
+                        System.out.println("CT");
+                        tempGrade = availableShapes.get(s).getSquareCount()*(gradeMove(unflippedMove,board)+1);
+                        if(best.size()<=count){
+                            bestGrades.add(tempGrade);
+                            best.add(unflippedMove);
+                        }else if(tempGrade>bestGrades.get(bestGrades.size()-1)){
+                            for(int i=count;i>=0;i--){
+                                if(tempGrade<bestGrades.get(i)){
+                                    bestGrades.add(i+1, tempGrade);
+                                    best.add(i+1, unflippedMove);
+                                    best.remove(count+1);
+                                    bestGrades.remove(count+1);
+                                }
+                            }
+                        }
+                    }
+                    flippedMove = new Move(s, true, x, possibleMoves.get(p));
+                    if(board.isValidMove(flippedMove, color))
+                    {
+                        System.out.println("CT");
+                        tempGrade = availableShapes.get(s).getSquareCount()*(gradeMove(flippedMove,board)+1);
+                        if(best.size()<=count){
+                            bestGrades.add(tempGrade);
+                            best.add(flippedMove);
+                        }else if(tempGrade>bestGrades.get(bestGrades.size()-1)){
+                            for(int i=count;i>=0;i--){
+                                if(tempGrade<bestGrades.get(i)){
+                                    bestGrades.add(i+1, tempGrade);
+                                    best.add(i+1, flippedMove);
+                                    best.remove(count+1);
+                                    bestGrades.remove(count+1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        best.remove(0);
+        bestGrades.remove(0);
+
+        Move[] ret = new Move[count];
+        System.out.println("C: " + count);
+        System.out.println(best);
+        for(int i=0;i<ret.length;i++){
+            ret[i] = best.get(i);
+        }
+
+        return ret;
     }
 
 
