@@ -25,6 +25,11 @@ public class Crandrake extends Player {
         Stack<Integer> depth = new Stack<>();
 
         Move[] b = getBestMoves(STARTING_BRANCHES, board, getColor());
+        for(Move i : b){
+            if(i==null) break;
+            moves.push(i);
+            depth.push(0);
+        }
 
         int bestGrade = Integer.MIN_VALUE;
         Move best = null, cMove = null;
@@ -37,6 +42,7 @@ public class Crandrake extends Player {
                 //UNMOVE PIECE
                 board.undoMovePiece(moves.pop(), cColor);
                 rDepth = depth.pop();
+                board.changeTurns();
                 //DOUBLE POP
                 continue;
             }
@@ -57,10 +63,12 @@ public class Crandrake extends Player {
                 board.makeMove(moves.peek(),cColor);
                 Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, cColor);
                 for(Move i : m){
+                    if(i==null) break;
                     moves.push(i);
                     depth.push(rDepth+1);
                     //EVEN PUSHES
                 }
+                board.changeTurns();
             }else{
                 //AT MAX DEPTH
                 tGrade = gradeBoard(board, cColor);
@@ -123,6 +131,8 @@ public class Crandrake extends Player {
         if (availableShapes == null) {
             availableShapes = board.getShapes();
         }
+        boolean changeTurns = color!=board.getTurn();
+        if(changeTurns) board.changeTurns();
         ArrayList<Move> best = new ArrayList<>();
         ArrayList<Integer> bestGrades = new ArrayList<>();
         ArrayList<IntPoint> possibleMoves = board.moveLocations(color);
@@ -181,12 +191,12 @@ public class Crandrake extends Player {
         bestGrades.remove(0);
 
         Move[] ret = new Move[count];
-        System.out.println("C: " + count);
+        System.out.println("C: " + count + " " + ret.length + " " + best.size());
         System.out.println(best);
-        for(int i=0;i<ret.length;i++){
+        for(int i=0;i<best.size()&&i<ret.length;i++){
             ret[i] = best.get(i);
         }
-
+        if(changeTurns) board.changeTurns();
         return ret;
     }
 
