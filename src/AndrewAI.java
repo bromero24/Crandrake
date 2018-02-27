@@ -10,73 +10,75 @@ public class AndrewAI extends Player
     }
 
 
-    @Override
     /**
      *
+     * @param board - the board that a move should be made on
+     * @return the best move that can be made
      */
+    @Override
     public Move getMove(BlokusBoard board)
     {
         Move move = null;
         int maxScore = 0;
 
-        for (int x1 = 0;x1<board.moveLocations(getColor()).size();x1++)
+        for(int x1 = 0; x1 < board.moveLocations(getColor()).size(); x1++)
         {
             IntPoint p = board.moveLocations(getColor()).get(x1);
             //Taken from BigMoverAI, stores which pieces have been used already
             boolean[] used = (getColor() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
-            for (int x = 0; x < used.length; x++)
+            for(int x = 0; x < used.length; x++)
             {
-                if (!used[x])
+                if(!used[x])
                 {
                     ArrayList<Move> moves = possibleMoves(board, x, p);
 
-                    for (Move m : moves)
+                    for(Move m : moves)
                     {
                         board.makeMove(m, getColor());
-                        board.changeTurns();
                         int score = gradeBoard(board);
-                        if (score > maxScore)
+                        if(score > maxScore)
                         {
                             move = m;
                             maxScore = score;
                         }
                         board.undoMovePiece(m, getColor());
+                        board.changeTurns();
                     }
                 }
             }
         }
 
-        if (move == null) //copied from random AI
+        if(move == null) //copied from random AI
         {
             ArrayList<IntPoint> avaiableMoves = board.moveLocations(getColor());
             Collections.shuffle(avaiableMoves);
             ArrayList<Integer> usableShapePositions = new ArrayList<>();
-            boolean[] used = (getColor()==BlokusBoard.ORANGE)?board.getOrangeUsedShapes():board.getPurpleUsedShapes();
-            for(int x=0; x<used.length; x++)
+            boolean[] used = (getColor() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
+            for(int x = 0; x < used.length; x++)
                 if(!used[x])
                     usableShapePositions.add(x);
             Collections.shuffle(usableShapePositions);
-            if(usableShapePositions.isEmpty() ||avaiableMoves.isEmpty())
+            if(usableShapePositions.isEmpty() || avaiableMoves.isEmpty())
                 return null;
             else
             {
-                for(int x = 0;x<avaiableMoves.size();x++)
+                for(int x = 0; x < avaiableMoves.size(); x++)
                 {
                     IntPoint movLoc = avaiableMoves.get(x);
-                    for (Integer position : usableShapePositions)
+                    for(Integer position : usableShapePositions)
                     {
-                        for (int i = 0; i < 8; i++)
+                        for(int i = 0; i < 8; i++)
                         {
                             boolean flip = i > 3;
                             int rotation = i % 4;
                             boolean[][] shape = board.getShapes().get(position).manipulatedShape(flip, rotation);
-                            for (int r = -shape.length + 1; r < shape.length; r++)
+                            for(int r = -shape.length + 1; r < shape.length; r++)
                             {
-                                for (int c = -shape[0].length + 1; c < shape[0].length; c++)
+                                for(int c = -shape[0].length + 1; c < shape[0].length; c++)
                                 {
                                     IntPoint topLeft = new IntPoint(movLoc.getX() + c, movLoc.getY() + r);
                                     Move test = new Move(position, flip, rotation, topLeft);
-                                    if (board.isValidMove(test, getColor()))
+                                    if(board.isValidMove(test, getColor()))
                                     {
                                         System.out.println("MADE RANDOM MOVE");
                                         return test;
@@ -99,47 +101,42 @@ public class AndrewAI extends Player
      * @param c     the column to grade
      * @return the grade of the square
      * <p>
-     * TODO: Figure out grading values. Might add instead of multiplying
+     * TODO: Figure out grading values
      */
-    public int gradeSquare(BlokusBoard board, int r, int c)
+    private int gradeSquare(BlokusBoard board, int r, int c)
     {
         int value = 0;
 
         //if either player has no moves
 
-        if (board.getBoard()[r][c] == BlokusBoard.EMPTY)
+        if(board.getBoard()[r][c] == BlokusBoard.EMPTY)
         {
-            if (!board.notOrthogonalToSelf(c, r, getColor()) && !board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching both
+            if(!board.notOrthogonalToSelf(c, r, getColor()) && !board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching both
             {
                 value -= 10;
-            }
-            else if (!board.notOrthogonalToSelf(c, r, getColor())) // true if touching self TODO: Bigger leaks are worse for us
+            } else if(!board.notOrthogonalToSelf(c, r, getColor())) // true if touching self TODO: Bigger leaks are worse for us
             {
                 value -= 90;
-                if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
+                if(board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
                 {
                     value -= 50;
                 }
-            }
-            else if (!board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching opponent TODO: Bigger leaks are better for us
+            } else if(!board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching opponent TODO: Bigger leaks are better for us
             {
                 value += 100;
-                if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
+                if(board.diagonalToColor(c, r, getColor())) // true if square is playable for us
                 {
                     value += 60;
                 }
-            }
-            else if(board.notOrthogonalToSelf(c, r, getColor()) && board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching neither
+            } else if(board.notOrthogonalToSelf(c, r, getColor()) && board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching neither
             {
-                if (board.diagonalToColor(c, r, getOtherColor()) && board.diagonalToColor(c, r, getColor())) // true if square is playable for both
+                if(board.diagonalToColor(c, r, getOtherColor()) && board.diagonalToColor(c, r, getColor())) // true if square is playable for both
                 {
                     value -= 10;
-                }
-                else if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
+                } else if(board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
                 {
                     value -= 70;
-                }
-                else if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
+                } else if(board.diagonalToColor(c, r, getColor())) // true if square is playable for us
                 {
                     value += 80;
                 }
@@ -150,41 +147,68 @@ public class AndrewAI extends Player
 //                //increases the value. Multiplier is subject to change. Reserved is a very good score.
 //                value *= 2;
 //            }
-        }
-        else if (board.getBoard()[r][c] == getColor())
+        } else if(board.getBoard()[r][c] == getColor())
         {
-            value += 100;
+            value += 170;
 
             if(r > 5 && r < 10 && c > 5 && c < 10) //piece in center
+            {
+                value += 120;
+            } else if(r < 5 && c < 5 || r < 5 && c > 10 || r > 10 && c < 5 || r > 10 && c > 10)
+            {
+                value -= 60;
+            }
+        } else if(board.getBoard()[r][c] != getColor())
+        {
+            value -= 160;
+
+            if(r > 5 && r < 10 && c > 5 && c < 10) //piece in center
+            {
+                value -= 110;
+            } else if(r < 5 && c < 5 || r < 5 && c > 10 || r > 10 && c < 5 || r > 10 && c > 10)
             {
                 value += 50;
-            }
-        }
-        else if (board.getBoard()[r][c] != getColor())
-        {
-            value -= 100;
-
-            if(r > 5 && r < 10 && c > 5 && c < 10) //piece in center
-            {
-                value -= 50;
             }
         }
         return value;
     }
 
-    public int gradeBoard(BlokusBoard board)
+    private int gradeBoard(BlokusBoard board)
     {
         int grade = 0;
         int[][] b = board.getBoard();
 
-        for (int r = 0; r < b.length; r++)
+        for(int r = 0; r < b.length; r++)
         {
-            for (int c = 0; c < b[0].length; c++)
+            for(int c = 0; c < b[0].length; c++)
             {
                 grade += gradeSquare(board, r, c);
             }
         }
-        System.out.println("GRADE: "+grade);
+
+        if(board.moveLocations(getOtherColor()).size() == 0) // always places if it stops opponent from moving
+        {
+            grade = Integer.MAX_VALUE;
+        }
+        board.changeTurns();
+        if(board.moveLocations(getColor()).size() == 0) // never places if it stops us from moving
+        {
+            grade = Integer.MIN_VALUE;
+        }
+        board.changeTurns();
+
+        if(board.moveLocations(getOtherColor()).size() <= 3) // better move the less places the opponent can move
+        {
+            grade += 2400 - board.moveLocations(getOtherColor()).size() * 800;
+        }
+        board.changeTurns();
+        if(board.moveLocations(getColor()).size() <= 3) // worse move the less places we have to move
+        {
+            grade -= 2400 - board.moveLocations(getColor()).size() * 800;
+        }
+        board.changeTurns();
+
+        System.out.println("GRADE: " + grade);
         return grade;
     }
 
@@ -199,27 +223,27 @@ public class AndrewAI extends Player
 
     public ArrayList<Move> possibleMoves(BlokusBoard board, int pieceNumber, IntPoint position)
     {
-        ArrayList<Move> moves = new ArrayList<Move>();
+        ArrayList<Move> moves = new ArrayList<>();
 
         boolean[] used = (getColor() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
-        for (int x = 0; x < used.length; x++)
+        for(int x = 0; x < used.length; x++)
         {
-            if (pieceNumber == x)
+            if(pieceNumber == x)
             {
                 Shape shape = board.getShapes().get(x);
                 int pieceWidth = shape.original()[0].length;
                 int pieceHeight = shape.original().length;
 
-                for (int flip = 0; flip < 2; flip++)
+                for(int flip = 0; flip < 2; flip++)
                 {
-                    for (int rotation = 0; rotation < 4; rotation++)
+                    for(int rotation = 0; rotation < 4; rotation++)
                     {
-                        for (int r = -pieceHeight + 1; r < pieceHeight; r++)
+                        for(int r = -pieceHeight + 1; r < pieceHeight; r++)
                         {
-                            for (int c = -pieceWidth + 1; c < pieceWidth; c++)
+                            for(int c = -pieceWidth + 1; c < pieceWidth; c++)
                             {
-                                Move temp = new Move(pieceNumber, flip % 2 == 0 ? false : true, rotation, new IntPoint(position.getX() + c, position.getY() + r));
-                                if (board.isValidMove(temp, getColor()))
+                                Move temp = new Move(pieceNumber, flip % 2 != 0, rotation, new IntPoint(position.getX() + c, position.getY() + r));
+                                if(board.isValidMove(temp, getColor()))
                                 {
                                     moves.add(temp);
                                 }
