@@ -34,13 +34,12 @@ public class Crandrake extends Player {
         int bestGrade = Integer.MIN_VALUE;
         Move best = null, cMove = null;
 
-        int rDepth = 0, tGrade, aGrade = Integer.MIN_VALUE, cColor;
+        int rDepth = 0, tGrade, aGrade = Integer.MIN_VALUE;
         do{
-            cColor = (depth.peek()%2==0 ? getOpponentColor(getColor()) : getColor());
             if(rDepth>depth.peek()){
                 //IF GOING UP
                 //UNMOVE PIECE
-                board.undoMovePiece(moves.pop(), cColor);
+                board.undoMovePiece(moves.pop(), board.getTurn());
                 rDepth = depth.pop();
                 board.changeTurns();
                 //DOUBLE POP
@@ -60,18 +59,18 @@ public class Crandrake extends Player {
                     }
                     cMove = moves.peek();
                 }
-                board.makeMove(moves.peek(),cColor);
-                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, cColor);
+                board.makeMove(moves.peek(),board.getTurn());
+                board.changeTurns();
+                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, board.getTurn());
                 for(Move i : m){
                     if(i==null) break;
                     moves.push(i);
                     depth.push(rDepth+1);
                     //EVEN PUSHES
                 }
-                board.changeTurns();
             }else{
                 //AT MAX DEPTH
-                tGrade = gradeBoard(board, cColor);
+                tGrade = gradeBoard(board, board.getTurn());
                 switch(scoringMethod){
                     case AGGREGATE_SCORE:
                         aGrade+=tGrade;
