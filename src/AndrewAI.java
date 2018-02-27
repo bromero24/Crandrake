@@ -19,8 +19,9 @@ public class AndrewAI extends Player
         Move move = null;
         int maxScore = 0;
 
-        for (IntPoint p : board.moveLocations(getColor()))
+        for (int x1 = 0;x1<board.moveLocations(getColor()).size();x1++)
         {
+            IntPoint p = board.moveLocations(getColor()).get(x1);
             //Taken from BigMoverAI, stores which pieces have been used already
             boolean[] used = (getColor() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
             for (int x = 0; x < used.length; x++)
@@ -29,11 +30,8 @@ public class AndrewAI extends Player
                 {
                     ArrayList<Move> moves = possibleMoves(board, x, p);
 
-
-
                     for (Move m : moves)
                     {
-                        System.out.println("VALID?: "+board.isValidMove(m,getColor()));
                         board.makeMove(m, getColor());
                         board.changeTurns();
                         int score = gradeBoard(board);
@@ -62,8 +60,9 @@ public class AndrewAI extends Player
                 return null;
             else
             {
-                for(IntPoint movLoc: avaiableMoves)
+                for(int x = 0;x<avaiableMoves.size();x++)
                 {
+                    IntPoint movLoc = avaiableMoves.get(x);
                     for (Integer position : usableShapePositions)
                     {
                         for (int i = 0; i < 8; i++)
@@ -105,6 +104,9 @@ public class AndrewAI extends Player
     public int gradeSquare(BlokusBoard board, int r, int c)
     {
         int value = 0;
+
+        //if either player has no moves
+
         if (board.getBoard()[r][c] == BlokusBoard.EMPTY)
         {
             if (!board.notOrthogonalToSelf(c, r, getColor()) && !board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching both
@@ -113,10 +115,10 @@ public class AndrewAI extends Player
             }
             else if (!board.notOrthogonalToSelf(c, r, getColor())) // true if touching self TODO: Bigger leaks are worse for us
             {
-                value -= 100;
+                value -= 90;
                 if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
                 {
-                    value -= 130;
+                    value -= 50;
                 }
             }
             else if (!board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching opponent TODO: Bigger leaks are better for us
@@ -124,22 +126,22 @@ public class AndrewAI extends Player
                 value += 100;
                 if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
                 {
-                    value += 130;
+                    value += 60;
                 }
             }
             else if(board.notOrthogonalToSelf(c, r, getColor()) && board.notOrthogonalToSelf(c, r, getOtherColor())) // true if touching neither
             {
                 if (board.diagonalToColor(c, r, getOtherColor()) && board.diagonalToColor(c, r, getColor())) // true if square is playable for both
                 {
-                    value -= 50;
+                    value -= 10;
                 }
                 else if (board.diagonalToColor(c, r, getOtherColor())) // true if square is playable for opponent
                 {
-                    value -= 130;
+                    value -= 70;
                 }
                 else if (board.diagonalToColor(c, r, getColor())) // true if square is playable for us
                 {
-                    value += 200;
+                    value += 80;
                 }
             }
 //            TODO: Reserved
@@ -153,18 +155,18 @@ public class AndrewAI extends Player
         {
             value += 100;
 
-            if(r >= 5 && r <= 10 && c >= 5 && c <= 10) //piece in center
+            if(r > 5 && r < 10 && c > 5 && c < 10) //piece in center
             {
-                value += 300;
+                value += 50;
             }
         }
         else if (board.getBoard()[r][c] != getColor())
         {
             value -= 100;
 
-            if(r >= 5 && r <= 10 && c >= 5 && c <= 10) //piece in center
+            if(r > 5 && r < 10 && c > 5 && c < 10) //piece in center
             {
-                value -= 300;
+                value -= 50;
             }
         }
         return value;
@@ -216,12 +218,9 @@ public class AndrewAI extends Player
                         {
                             for (int c = -pieceWidth + 1; c < pieceWidth; c++)
                             {
-                                System.out.println("PIECE ROW AND COLUMN: "+r + "\t" + c);
-                                System.out.println("PICE NUMBER: "+pieceNumber);
                                 Move temp = new Move(pieceNumber, flip % 2 == 0 ? false : true, rotation, new IntPoint(position.getX() + c, position.getY() + r));
                                 if (board.isValidMove(temp, getColor()))
                                 {
-                                    System.out.println("ADDED");
                                     moves.add(temp);
                                 }
                             }
@@ -231,11 +230,6 @@ public class AndrewAI extends Player
             }
         }
 
-        for(Move m:moves)
-        {
-            System.out.print(board.isValidMove(m,getColor())+" ");
-        }
-        System.out.println();
         return moves;
     }
 
