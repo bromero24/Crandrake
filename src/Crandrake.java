@@ -89,9 +89,23 @@ public class Crandrake extends Player {
         return best;
     }
 
-    private int getOpponentColor(int color){
-        if(getColor()==BlokusBoard.ORANGE) return BlokusBoard.PURPLE;
-        else return BlokusBoard.ORANGE;
+    private boolean equalArray(boolean[][] a, boolean[][] b){
+        if(a.length!=b.length) return false;
+        for(int i=0;i<a.length;i++){
+            if(a[i].length!=b[i].length) return false;
+            for(int j=0;j<a[i].length;j++){
+                if(a[i][j]!=b[i][j]) return false;
+            }
+        }
+        return true;
+    }
+
+    private Move[] getValidMoves(BlokusBoard board, int color){
+        boolean[][][] prevMoves = new boolean[8][][];
+        for(int r=0;r<4;r++){
+
+        }
+        return null;
     }
 
     public int gradeBoard(BlokusBoard board, int color) {
