@@ -3,7 +3,6 @@ import java.util.Collections;
 
 public class AndrewAI extends Player
 {
-
     public AndrewAI(int color, String name)
     {
         super(color, name);
@@ -11,7 +10,6 @@ public class AndrewAI extends Player
 
 
     /**
-     *
      * @param board - the board that a move should be made on
      * @return the best move that can be made
      */
@@ -81,14 +79,13 @@ public class AndrewAI extends Player
                                     if(board.isValidMove(test, getColor()))
                                     {
                                         System.out.println("MADE RANDOM MOVE");
-                                        return test;
+                                        move = test;
                                     }
                                 }
                             }
                         }
                     }
                 }
-                return null;
             }
         }
 
@@ -208,7 +205,6 @@ public class AndrewAI extends Player
         }
         board.changeTurns();
 
-        System.out.println("GRADE: " + grade);
         return grade;
     }
 
