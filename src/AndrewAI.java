@@ -14,11 +14,14 @@ public class AndrewAI extends Player
     public final static int AGGREGATE_SCORE = 0;
     public final static int SINGLE_SCORE = 1;
 
+    ArrayList<Shape> availableShapes;
+
     private int scoringMethod = SINGLE_SCORE;
 
     public AndrewAI(int color, String name)
     {
         super(color, name);
+        availableShapes = BlokusBoard.getShapes();
     }
 
     public Move getMove(BlokusBoard board) {
@@ -26,8 +29,8 @@ public class AndrewAI extends Player
         Stack<Move> moves= new Stack<>();
         Stack<Integer> depth = new Stack<>();
 
-        Move[] b = getBestMoves(STARTING_BRANCHES, board, getColor());
-        for(Move i : b){
+        Move[] b = getBestMoves(STARTING_BRANCHES, board);
+        if(b!=null) for(Move i : b){
             if(i==null) break;
             moves.push(i);
             depth.push(0);
@@ -38,6 +41,7 @@ public class AndrewAI extends Player
 
         int rDepth = 0, tGrade, aGrade = Integer.MIN_VALUE;
         do{
+            System.out.println("RUN");
             if(rDepth>depth.peek()){
                 //IF GOING UP
                 //UNMOVE PIECE
@@ -63,7 +67,7 @@ public class AndrewAI extends Player
                 }
                 board.makeMove(moves.peek(),board.getTurn());
                 board.changeTurns();
-                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, board.getTurn());
+                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board);
                 for(Move i : m){
                     if(i==null) break;
                     moves.push(i);
@@ -72,7 +76,7 @@ public class AndrewAI extends Player
                 }
             }else{
                 //AT MAX DEPTH
-                tGrade = gradeBoard(board, board.getTurn());
+                tGrade = gradeBoard(board);
                 switch(scoringMethod){
                     case AGGREGATE_SCORE:
                         aGrade+=tGrade;
@@ -88,10 +92,46 @@ public class AndrewAI extends Player
                 //DOUBLE POP
             }
         }while(depth.size()>0);
+        availableShapes.remove(board.getShapes().get(best.getPieceNumber()));
         return best;
     }
 
-    public Move[] getBestMoves(BlokusBoard board){
+    public Move[] getBestMoves(int count, BlokusBoard board){
+        ArrayList<Move> allMoves = new ArrayList<>();
+        Move[] ret = new Move[count];
+        for(int i=0;i<availableShapes.size();i++){
+            int index = 0;
+            for(;index<availableShapes.size();index++){
+                if(board.getShapes().get(index)==availableShapes.get(i)){
+                    for(int r=0;r<board.getBoard().length;r++){
+                        for(int c=0;c<board.getBoard()[r].length;c++){
+                            allMoves.addAll(possibleMoves(board, index, new IntPoint(c, r)));
+                        }
+                    }
+
+                }
+            }
+
+        }
+        ArrayList<Move> best = new ArrayList<>();
+        ArrayList<Integer> bestGrades = new ArrayList<>();
+        int g;
+        bestGrades.add(Integer.MAX_VALUE);
+        for(int i=0;i<allMoves.size();i++){
+            board.makeMove(allMoves.get(i), board.getTurn());
+            g=gradeBoard(board);
+            board.undoMovePiece(allMoves.get(i), board.getTurn());
+            for(int j=best.size();j>0;j--){
+                if(g<bestGrades.get(i)){
+                    best.add(i, allMoves.get(i));
+                    bestGrades.add(i+1, g);
+                }
+            }
+            if(best.size()>count){
+                best.remove(count);
+                bestGrades.remove(count+1);
+            }
+        }
         return null;
     }
 
@@ -192,6 +232,7 @@ public class AndrewAI extends Player
         return move;
     }
 
+
     /**
      * @param board the current state of the board
      * @param r     the row to grade
@@ -279,6 +320,7 @@ public class AndrewAI extends Player
         return value;
     }
 
+    /*
     private int gradeBoard(BlokusBoard board)
     {
         int grade = 0;
@@ -345,6 +387,17 @@ public class AndrewAI extends Player
 
         return grade;
     }
+    */
+
+    private int gradeBoard(BlokusBoard board){
+        int grade = 0;
+        for(int i=0;i<board.getBoard().length;i++){
+            for(int j=0;j<board.getBoard()[i].length;j++){
+                grade+=gradeSquare(board, i, j);
+            }
+        }
+        return grade;
+    }
 
     /**
      * @param board the current state of the board
@@ -391,7 +444,7 @@ public class AndrewAI extends Player
         return moves;
     }
 
-//  Planning on incorporating these ideas into gradeSquare(). May come back to this
+    //  Planning on incorporating these ideas into gradeSquare(). May come back to this
 //    /**
 //     * Returns the number of corners after a move is made. TODO: Improve by making some corners worth more than others
 //     *

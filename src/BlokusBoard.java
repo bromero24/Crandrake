@@ -591,11 +591,13 @@ public class BlokusBoard
             }
             try
             {
+                /*
                 System.out.println("The player is "+ color);
                 System.out.println("The turn is "+ turn);
                 System.out.println("The move is "+ move);
                 System.out.println("Not a valid Move");
                 Thread.sleep(10000);
+                */
             }
             catch(Exception e) {
 

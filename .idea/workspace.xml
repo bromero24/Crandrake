@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68c6661b-5f77-4675-9a5e-c9321e005e71" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AndrewAI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockus AI - Solution/Crandrake.class" afterPath="$PROJECT_DIR$/out/production/Blockus AI - Solution/Crandrake.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Crandrake.java" afterPath="$PROJECT_DIR$/src/Crandrake.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AndrewAI.java" afterPath="$PROJECT_DIR$/src/AndrewAI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BlokusBoard.java" afterPath="$PROJECT_DIR$/src/BlokusBoard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientMain.java" afterPath="$PROJECT_DIR$/src/ClientMain.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,12 +24,11 @@
       <file leaf-file-name="Crandrake.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="12" selection-end-column="45" />
+            <state relative-caret-position="313">
+              <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
               <folding>
                 <element signature="method#equalArray#0;class#Crandrake#0" expanded="false" />
                 <element signature="method#getValidMoves#0;class#Crandrake#0" expanded="false" />
-                <element signature="method#gradeBoard#0;class#Crandrake#0" expanded="false" />
                 <element signature="docComment;method#getBestMoves#0;class#Crandrake#0" expanded="false" />
                 <element signature="method#getBestMoves#0;class#Crandrake#0" expanded="false" />
                 <element signature="method#gradeMove#0;class#Crandrake#0" expanded="false" />
@@ -39,19 +40,30 @@
       <file leaf-file-name="AndrewAI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AndrewAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+            <state relative-caret-position="367">
+              <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getMove#0;class#AndrewAI#0" expanded="false" />
-                <element signature="e#3026#3027#0" expanded="true" />
-                <element signature="e#3053#3054#0" expanded="true" />
+                <element signature="method#AndrewAI#0;class#AndrewAI#0" expanded="false" />
+                <element signature="method#getBestMoves#0;class#AndrewAI#0" expanded="false" />
                 <element signature="docComment;method#getMoveSecondary#0;class#AndrewAI#0" expanded="false" />
-                <element signature="e#12278#12279#0" expanded="true" />
-                <element signature="e#12305#12306#0" expanded="true" />
-                <element signature="e#15182#15183#0" expanded="true" />
-                <element signature="e#15240#15241#0" expanded="true" />
+                <element signature="method#getMoveSecondary#0;class#AndrewAI#0" expanded="false" />
+                <element signature="docComment;method#gradeSquare#0;class#AndrewAI#0" expanded="false" />
+                <element signature="method#gradeSquare#0;class#AndrewAI#0" expanded="false" />
+                <element signature="docComment;method#findReserved#0;class#AndrewAI#0" expanded="false" />
+                <element signature="e#15570#15653#0" expanded="false" />
+                <marker date="1519846860793" expanded="false" signature="11923:13618" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServersListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ServersListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="116" column="59" lean-forward="false" selection-start-line="116" selection-start-column="59" selection-end-line="116" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +71,8 @@
       <file leaf-file-name="ClientMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ClientMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="35" column="79" lean-forward="false" selection-start-line="35" selection-start-column="79" selection-end-line="35" selection-end-column="79" />
+            <state relative-caret-position="409">
+              <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -69,8 +81,8 @@
       <file leaf-file-name="BlokusBoard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="618" column="0" lean-forward="true" selection-start-line="618" selection-start-column="0" selection-end-line="618" selection-end-column="0" />
+            <state relative-caret-position="222">
+              <caret line="599" column="18" lean-forward="false" selection-start-line="599" selection-start-column="18" selection-end-line="599" selection-end-column="18" />
               <folding>
                 <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
                 <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
@@ -99,7 +111,7 @@
       <file leaf-file-name="Shape.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Shape.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
+            <state relative-caret-position="271">
               <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
               <folding />
             </state>
@@ -109,7 +121,7 @@
       <file leaf-file-name="BigMoverAI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BigMoverAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="17">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
             </state>
@@ -141,6 +153,9 @@
       <find>AI</find>
       <find>cColor</find>
       <find>getColor()</find>
+      <find>availaba</find>
+      <find>Not a valid move</find>
+      <find>Not a va</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -178,9 +193,9 @@
         <option value="$PROJECT_DIR$/src/BlockingAI.java" />
         <option value="$PROJECT_DIR$/src/DisplayScreen.java" />
         <option value="$PROJECT_DIR$/src/ServersListener.java" />
-        <option value="$PROJECT_DIR$/src/ClientMain.java" />
-        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
         <option value="$PROJECT_DIR$/src/Crandrake.java" />
+        <option value="$PROJECT_DIR$/src/BlokusBoard.java" />
+        <option value="$PROJECT_DIR$/src/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/AndrewAI.java" />
       </list>
     </option>
@@ -206,10 +221,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -399,7 +414,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35448578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35448578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -452,7 +467,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -663,29 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServersListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BigMoverAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Shape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -694,18 +686,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Shape.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="35" column="79" lean-forward="false" selection-start-line="35" selection-start-column="79" selection-end-line="35" selection-end-column="79" />
+        <state relative-caret-position="271">
+          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BigMoverAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServersListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="116" column="59" lean-forward="false" selection-start-line="116" selection-start-column="59" selection-end-line="116" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+          <folding>
+            <element signature="method#equalArray#0;class#Crandrake#0" expanded="false" />
+            <element signature="method#getValidMoves#0;class#Crandrake#0" expanded="false" />
+            <element signature="docComment;method#getBestMoves#0;class#Crandrake#0" expanded="false" />
+            <element signature="method#getBestMoves#0;class#Crandrake#0" expanded="false" />
+            <element signature="method#gradeMove#0;class#Crandrake#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BlokusBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="618" column="0" lean-forward="true" selection-start-line="618" selection-start-column="0" selection-end-line="618" selection-end-column="0" />
+        <state relative-caret-position="222">
+          <caret line="599" column="18" lean-forward="false" selection-start-line="599" selection-start-column="18" selection-end-line="599" selection-end-column="18" />
           <folding>
             <element signature="docComment;method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
             <element signature="method#notOrthogonalToSelf#0;class#BlokusBoard#0" expanded="false" />
@@ -720,35 +742,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Crandrake.java">
+    <entry file="file://$PROJECT_DIR$/src/ClientMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="12" selection-end-column="45" />
-          <folding>
-            <element signature="method#equalArray#0;class#Crandrake#0" expanded="false" />
-            <element signature="method#getValidMoves#0;class#Crandrake#0" expanded="false" />
-            <element signature="method#gradeBoard#0;class#Crandrake#0" expanded="false" />
-            <element signature="docComment;method#getBestMoves#0;class#Crandrake#0" expanded="false" />
-            <element signature="method#getBestMoves#0;class#Crandrake#0" expanded="false" />
-            <element signature="method#gradeMove#0;class#Crandrake#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="409">
+          <caret line="35" column="42" lean-forward="false" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AndrewAI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+        <state relative-caret-position="367">
+          <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="35" selection-end-line="54" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#getMove#0;class#AndrewAI#0" expanded="false" />
-            <element signature="e#3026#3027#0" expanded="true" />
-            <element signature="e#3053#3054#0" expanded="true" />
+            <element signature="method#AndrewAI#0;class#AndrewAI#0" expanded="false" />
+            <element signature="method#getBestMoves#0;class#AndrewAI#0" expanded="false" />
             <element signature="docComment;method#getMoveSecondary#0;class#AndrewAI#0" expanded="false" />
-            <element signature="e#12278#12279#0" expanded="true" />
-            <element signature="e#12305#12306#0" expanded="true" />
-            <element signature="e#15182#15183#0" expanded="true" />
-            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="method#getMoveSecondary#0;class#AndrewAI#0" expanded="false" />
+            <element signature="docComment;method#gradeSquare#0;class#AndrewAI#0" expanded="false" />
+            <element signature="method#gradeSquare#0;class#AndrewAI#0" expanded="false" />
+            <element signature="docComment;method#findReserved#0;class#AndrewAI#0" expanded="false" />
+            <element signature="e#15570#15653#0" expanded="false" />
+            <marker date="1519846860793" expanded="false" signature="11923:13618" ph="{...}" />
           </folding>
         </state>
       </provider>
