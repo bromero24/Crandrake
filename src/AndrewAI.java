@@ -30,6 +30,9 @@ public class AndrewAI extends Player
         Stack<Integer> depth = new Stack<>();
 
         Move[] b = getBestMoves(STARTING_BRANCHES, board);
+        for(int i=0;i<b.length;i++){
+            System.out.println(b[i]);
+        }
         if(b!=null) for(Move i : b){
             if(i==null) break;
             moves.push(i);
@@ -98,7 +101,7 @@ public class AndrewAI extends Player
 
     public Move[] getBestMoves(int count, BlokusBoard board){
         ArrayList<Move> allMoves = new ArrayList<>();
-        Move[] ret = new Move[count];
+        Move[] ret;
         for(int i=0;i<availableShapes.size();i++){
             int index = 0;
             for(;index<availableShapes.size();index++){
@@ -132,7 +135,11 @@ public class AndrewAI extends Player
                 bestGrades.remove(count+1);
             }
         }
-        return null;
+        ret = new Move[best.size()];
+        for(int i=0;i<ret.length&&i<best.size();i++){
+            ret[i] = best.get(i);
+        }
+        return ret;
     }
 
     /**
