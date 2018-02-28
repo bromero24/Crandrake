@@ -3,7 +3,8 @@ import java.util.Collections;
 
 public class AndrewAI extends Player
 {
-    public static final int LOOK_AHEAD_MOVES = 3;
+    public static final int LOOK_AHEAD_MOVES = 1;
+    public static final int LOOK_AHEAD_STORAGE = 5;
     private int lookingAhead = 0;
 
     public AndrewAI(int color, String name)
@@ -19,14 +20,57 @@ public class AndrewAI extends Player
     @Override
     public Move getMove(BlokusBoard board)
     {
+        ArrayList<Move> bestMoves = new ArrayList<Move>();
         Move move = null;
         int maxScore = 0;
+
+        //copied from randomAI
+        ArrayList<IntPoint> avaiableMoves = board.moveLocations(board.getTurn());
+        Collections.shuffle(avaiableMoves);
+        ArrayList<Integer> usableShapePositions = new ArrayList<>();
+        boolean[] used = (board.getTurn() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
+        for (int x = 0; x < used.length; x++)
+            if (!used[x])
+                usableShapePositions.add(x);
+        Collections.shuffle(usableShapePositions);
+        if (usableShapePositions.isEmpty() || avaiableMoves.isEmpty())
+            return null;
+        else
+        {
+            for (int x = 0; x < avaiableMoves.size(); x++)
+            {
+                IntPoint movLoc = avaiableMoves.get(x);
+                for (Integer position : usableShapePositions)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        boolean flip = i > 3;
+                        int rotation = i % 4;
+                        boolean[][] shape = board.getShapes().get(position).manipulatedShape(flip, rotation);
+                        for (int r = -shape.length + 1; r < shape.length; r++)
+                        {
+                            for (int c = -shape[0].length + 1; c < shape[0].length; c++)
+                            {
+                                IntPoint topLeft = new IntPoint(movLoc.getX() + c, movLoc.getY() + r);
+                                Move test = new Move(position, flip, rotation, topLeft);
+                                if (board.isValidMove(test, board.getTurn()))
+                                {
+                                    move = test;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         for (int x1 = 0; x1 < board.moveLocations(board.getTurn()).size(); x1++)
         {
             IntPoint p = board.moveLocations(board.getTurn()).get(x1);
             //Taken from BigMoverAI, stores which pieces have been used already
-            boolean[] used = (board.getTurn() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
+            used = (board.getTurn() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
             for (int x = 0; x < used.length; x++)
             {
                 if (!used[x])
@@ -40,7 +84,10 @@ public class AndrewAI extends Player
                         int score = gradeBoard(board);
                         if (score > maxScore)
                         {
-                            move = m;
+                            bestMoves.add(m);
+                            if(bestMoves.size()>=LOOK_AHEAD_STORAGE)
+                                bestMoves.remove(0);
+
                             maxScore = score;
                         }
                         board.undoMovePiece(m, board.getTurn());
@@ -49,63 +96,53 @@ public class AndrewAI extends Player
             }
         }
 
-        if (move == null) //copied from random AI
+
+        if(lookingAhead >= LOOK_AHEAD_MOVES)
         {
-            ArrayList<IntPoint> avaiableMoves = board.moveLocations(board.getTurn());
-            Collections.shuffle(avaiableMoves);
-            ArrayList<Integer> usableShapePositions = new ArrayList<>();
-            boolean[] used = (board.getTurn() == BlokusBoard.ORANGE) ? board.getOrangeUsedShapes() : board.getPurpleUsedShapes();
-            for (int x = 0; x < used.length; x++)
-                if (!used[x])
-                    usableShapePositions.add(x);
-            Collections.shuffle(usableShapePositions);
-            if (usableShapePositions.isEmpty() || avaiableMoves.isEmpty())
-                return null;
-            else
+            try
             {
-                for (int x = 0; x < avaiableMoves.size(); x++)
-                {
-                    IntPoint movLoc = avaiableMoves.get(x);
-                    for (Integer position : usableShapePositions)
-                    {
-                        for (int i = 0; i < 8; i++)
-                        {
-                            boolean flip = i > 3;
-                            int rotation = i % 4;
-                            boolean[][] shape = board.getShapes().get(position).manipulatedShape(flip, rotation);
-                            for (int r = -shape.length + 1; r < shape.length; r++)
-                            {
-                                for (int c = -shape[0].length + 1; c < shape[0].length; c++)
-                                {
-                                    IntPoint topLeft = new IntPoint(movLoc.getX() + c, movLoc.getY() + r);
-                                    Move test = new Move(position, flip, rotation, topLeft);
-                                    if (board.isValidMove(test, board.getTurn()))
-                                    {
-                                        System.out.println("MADE RANDOM MOVE");
-                                        move = test;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                return bestMoves.get(bestMoves.size()-1);
+            }
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                return move;
             }
         }
 
-//        if(lookingAhead >= LOOK_AHEAD_MOVES)
-//        {
-//            return move;
-//        }
-//
-//        board.makeMove(move,board.getTurn());
-//        board.changeTurns();
-//        lookingAhead++;
-//
-//        move = getMove(board);
-//
-//        board.undoMovePiece(move,board.getTurn());
-//        board.changeTurns();
-//        lookingAhead--;
+        int bestScore = 0;
+        for(Move m:bestMoves)
+        {
+            //make the move
+            board.makeMove(m,board.getTurn());
+            lookingAhead++;
+
+
+            //find the best moves after
+            Move tempMove = getMove(board);
+            if(tempMove == null)
+                continue;
+
+            board.makeMove(tempMove, board.getTurn());
+            board.changeTurns();
+
+            int score = gradeBoard(board);
+
+            board.undoMovePiece(tempMove, board.getTurn());
+
+
+            //if the score was better
+            if (score > bestScore && board.getTurn() == getColor() || score < bestScore && board.getTurn() != getColor())
+            {
+                bestScore = score;
+                move = m;
+            }
+
+
+            //undo the move
+            board.changeTurns();
+            board.undoMovePiece(m,board.getTurn());
+            lookingAhead--;
+        }
 
         return move;
     }
