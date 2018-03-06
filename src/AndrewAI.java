@@ -9,16 +9,16 @@ public class AndrewAI extends Player
     public static final int LOOK_AHEAD_MOVES = 3;
     private int lookingAhead = 0;
 
-    public final static int MAX_DEPTH = 4;
+    public final static int MAX_DEPTH = 1;
     public final static int STARTING_BRANCHES = 8;
-    public final static int BRANCH_DECAY = 2;
+    public final static int BRANCH_DECAY = 1;
 
     public final static int AGGREGATE_SCORE = 0;
     public final static int SINGLE_SCORE = 1;
 
     private static ArrayList<Shape> allShapes;
 
-    private int scoringMethod = SINGLE_SCORE;
+    private int scoringMethod = AGGREGATE_SCORE;
 
     public AndrewAI(int color, String name)
     {
@@ -27,21 +27,28 @@ public class AndrewAI extends Player
     }
 
     public Move getMove(BlokusBoard board) {
-        /*
         //Look ahead
         int exp = 1;
-        for(int i=0;i<MAX_DEPTH*2;i++){
+        for(int i=1;i<MAX_DEPTH*2;i++){
             exp*=STARTING_BRANCHES-(BRANCH_DECAY*(i/2));
         }
         System.out.println("EXP: " + exp);
         Stack<Move> moves= new Stack<>();
         Stack<Integer> depth = new Stack<>();
 
-        Move[] b = getBestMoves(STARTING_BRANCHES, board);
-        if(b!=null) for(Move i : b){
-            if(i==null) break;
-            moves.push(i);
-            depth.push(0);
+        Move[] b = getBestMoves(STARTING_BRANCHES, board, 0);
+        System.out.println("BINITSIZE: " + b.length);
+        if(b!=null&&b.length>0){
+            for(Move i : b){
+                if(i==null) break;
+                moves.push(i);
+                depth.push(0);
+            }
+        }
+        else{
+            if(board.getTurn() == board.ORANGE) board.orangeSkips();
+            else board.purpleSkips();
+            return null;
         }
 
         int bestGrade = Integer.MIN_VALUE;
@@ -78,16 +85,17 @@ public class AndrewAI extends Player
                 board.makeMove(moves.peek(),board.getTurn());
 
                 board.changeTurns();
-                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board);
+                Move[] m = getBestMoves(STARTING_BRANCHES-(BRANCH_DECAY*(rDepth/2)), board, rDepth/2);
                 for(Move i : m){
                     if(i==null) break;
                     moves.push(i);
                     depth.push(rDepth+1);
+                    System.out.println("ADDED AT DEPTH " + (rDepth+1));
                     //EVEN PUSHES
                 }
             }else{
                 //AT MAX DEPTH
-                tGrade = gradeBoard(board);
+                tGrade = gradeMove(board, moves.peek(), rDepth);
                 switch(scoringMethod){
                     case AGGREGATE_SCORE:
                         aGrade+=tGrade;
@@ -102,37 +110,26 @@ public class AndrewAI extends Player
                 moves.pop();
                 //DOUBLE POP
             }
-        }while(depth.size()>0);
-        System.out.println("RAN: " + runs + "\nB: " + best);
-        return best;
-        */
-        Move[] ret = getBestMoves(1, board);
-        if(ret.length == 0){
+            if(depth.size()==moves.size()) System.out.println("LAHEADERR: STACK DIFF");
+        }while(depth.size()>0&&moves.size()>0);
+        System.out.println("RAN: " + runs + "\nB:\n" + best);
+
+        if(best == null){
             if(board.getTurn() == board.ORANGE) board.orangeSkips();
             else board.purpleSkips();
             return null;
         }
-        return ret[0];
+        return best;
     }
 
-    public Move[] getBestMoves(int count, BlokusBoard board){
-        long elapsed = System.nanoTime();
-//        ArrayList<Move> allMoves = new ArrayList<>();
-//        Move[] ret;
-//        ArrayList<Shape> availableShapes = getAvailableShapes(board.getTurn(), board);
-//        for(int i=0;i<availableShapes.size();i++){
-//            int index = 0;
-//            for(;index<availableShapes.size();index++){
-//                if(allShapes.get(index)==availableShapes.get(i)){
-//                    for(int r=0;r<board.getBoard().length;r++){
-//                        for(int c=0;c<board.getBoard()[r].length;c++){
-//                            allMoves.addAll(possibleMoves(board, index, new IntPoint(c, r)));
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
+    public Move[] getBestMoves(int count, BlokusBoard board, int depth){
+        ArrayList<Move> allMoves = new ArrayList<>();
+        ArrayList<IntPoint> avaiableMoves = board.moveLocations(board.getTurn());
+        ArrayList<Integer> usableShapePositions = new ArrayList<>();
+        boolean[] used = (getColor()==BlokusBoard.ORANGE)?board.getOrangeUsedShapes():board.getPurpleUsedShapes();
+        for(int x=0; x<used.length; x++)
+            if(!used[x])
+                usableShapePositions.add(x);
 
         for(IntPoint movLoc: avaiableMoves)
             for(Integer position: usableShapePositions)
@@ -147,35 +144,11 @@ public class AndrewAI extends Player
                             IntPoint topLeft = new IntPoint(movLoc.getX()+c,movLoc.getY()+r);
                             Move test = new Move(position,flip,rotation,topLeft);
                             if(board.isValidMove(test,getColor()))
-                                return test;
+                                allMoves.add(test);
                         }
                 }
             }
-        return null;
-        elapsed = System.nanoTime()-elapsed;
-        System.out.println(elapsed);
-        throw new NullPointerException();
-        /*
-        for(IntPoint movLoc: avaiableMoves)
-                for(Integer position: usableShapePositions)
-                {
-                    for(int i=0; i<8;i++) {
-                        boolean flip = i > 3;
-                        int rotation = i % 4;
-                        boolean[][] shape = board.getShapes().get(position).manipulatedShape(flip, rotation);
-                        for (int r = -shape.length+1; r <shape.length;  r++)
-                            for (int c = -shape[0].length+1; c < shape[0].length; c++)
-                            {
-                                IntPoint topLeft = new IntPoint(movLoc.getX()+c,movLoc.getY()+r);
-                                Move test = new Move(position,flip,rotation,topLeft);
-                                if(board.isValidMove(test,getColor()))
-                                    return test;
-                            }
-                    }
-                }
-            return null;
-        */
-        /*
+        System.out.println("BMOVEVALIDMOVES: " + allMoves.size());
         ArrayList<Move> best = new ArrayList<>();
         ArrayList<Integer> bestGrades = new ArrayList<>();
         int g, place;
@@ -185,7 +158,7 @@ public class AndrewAI extends Player
 //            g=gradeBoard(board);
 //            board.undoMovePiece(allMoves.get(i), board.getTurn());
 
-            g=gradeMove(board, allMoves.get(i));
+            g=gradeMove(board, allMoves.get(i), depth);
 
             for(place=best.size();place>0&&g>bestGrades.get(place-1);place--);
 
@@ -202,12 +175,13 @@ public class AndrewAI extends Player
                 bestGrades.remove(count);
             }
         }
-        ret = new Move[best.size()];
+        System.out.println("BMOVEGRADES: " + bestGrades);
+        Move[] ret = new Move[best.size()];
         for(int i=0;i<ret.length&&i<best.size();i++){
             ret[i] = best.get(i);
         }
         return ret;
-        */
+
     }
 
     /**
@@ -315,10 +289,12 @@ public class AndrewAI extends Player
         //Places is
         for(int i=0;i<board.getBoard().length;i++){
             for(int j=0;j<board.getBoard()[i].length;j++){
-                if(board.getBoard()[i][j] == board.getTurn()) grade += 2;
+                if(board.getBoard()[i][j] == board.getTurn()){
+                    grade += 3;
+                    if(oMoves.contains(new IntPoint(i, j))) grade+= 25;
+                }
                 else if(board.getBoard()[i][j] != board.EMPTY) grade -= 2;
 
-                if(oMoves.contains(new IntPoint(j, i))) grade+= 10;
             }
         }
 
@@ -332,12 +308,12 @@ public class AndrewAI extends Player
         }
 
         grade+=cMovesNew.size()-cMoves.size()*10;
-        grade+=oMovesNew.size()-oMoves.size()*-10;
+        grade+=oMovesNew.size()-oMoves.size()*-5;
 
         return grade;
     }
 
-    private int gradeMove(BlokusBoard board, Move m){
+    private int gradeMove(BlokusBoard board, Move m, int depth){
 
         ArrayList<IntPoint> cMoves, oMoves;
         if(board.getTurn() == board.ORANGE){
@@ -355,7 +331,9 @@ public class AndrewAI extends Player
 
         board.undoMovePiece(m, board.getTurn());
 
-        return grade;
+        grade += allShapes.get(m.getPieceNumber()).getSquareCount()*5;
+
+        return grade*(int)Math.pow(2, MAX_DEPTH-depth);
     }
 
     /**
